@@ -50,6 +50,10 @@ public class FlutterWebView implements PlatformView, MethodCallHandler {
     webView.getSettings().setDomStorageEnabled(true);
     webView.getSettings().setJavaScriptCanOpenWindowsAutomatically(true);
 
+    // Allow local files and disable CORS
+    webView.getSettings().setAllowFileAccessFromFileURLs(true);
+    webView.getSettings().setAllowUniversalAccessFromFileURLs(true);
+
     methodChannel = new MethodChannel(messenger, "plugins.flutter.io/webview_" + id);
     methodChannel.setMethodCallHandler(this);
 
